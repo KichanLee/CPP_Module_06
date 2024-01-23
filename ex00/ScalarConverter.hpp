@@ -1,10 +1,12 @@
 #ifndef __SCALARCONVETER_HPP
 #define __SCALARCONVETER_HPP
 
+#include <cfloat>
+#include <climits>
+#include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <string>
-
-#include "Converter.hpp"
 
 class ScalarConverter {
  private:
