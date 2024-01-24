@@ -1,0 +1,47 @@
+Implement a class Serializer, who will not be initializable by the user by any way, 
+with the following static methods:
+- class Serializer을 실행하고, static methods 두개를 만들기
+    
+    uintptr_t serialize(Data* ptr);
+
+- 받은 매개변수인 포인터를 unsigned int 타입으로 바꾸며, uintptr_t를 return 하는 함수 만들기
+- `**Data* deserialize(uintptr_t raw);**`
+It takes an unsigned integer parameter and converts it to a pointer to Data.
+    - unsigned int 파라미터를 데이터인 포인터로 바꾸기
+
+
+You must create a **non-empty** (**it means it has data members**) Data structure.
+    - 걍 값 집어넣어주면됨 (data구조체에)
+
+se serialize() on the address of the Data object and pass its return value to deserialize(). 
+- 데이터 객체의 주소에 serialize()를 사용하고 반환값을 deserialize()에 전달
+
+Then, ensure the return value of deserialize() compares equal to the original pointer.
+- deserialize()의 리턴값과 원래 기존의 포인터의 값이 같은지 비교
+
+ 
+Do not forget to turn in the files of your Data structure.
+
+- reinterpret_cast사용하는 과제
+- reinterpret_cast는 주로 포인터에 사용되는 캐스팅.
+- **포인터→포인터**, **변수→포인터**,  **포인터→변수** 담당
+- `**serialization` : 직렬화에서 주로 사용됨**
+
+https://woo-dev.tistory.com/101
+
+- Serialize_직렬화
+    - 프로그램의 object에 담긴 데이터를 어떤 외부 파일에 write, 전송하는 것
+- Deserialize_역직렬화
+    - 어떤 외부 파일의 데이터를 프로그램 내의 object로 read 해 오는 것
+
+    ========================================
+Implement a class Serializer, who will not be initializable by the user by any way, 
+with the following static methods:
+uintptr_t serialize(Data* ptr);
+It takes a pointer and converts it to the unsigned integer type uintptr_t.
+Data* deserialize(uintptr_t raw);
+It takes an unsigned integer parameter and converts it to a pointer to Data.
+Write a program to test that your class works as expected.
+You must create a non-empty (it means it has data members) Data structure.
+Use serialize() on the address of the Data object and pass its return value to deserialize(). Then, ensure the return value of deserialize() compares equal to the original pointer.
+Do not forget to turn in the files of your Data structure.
