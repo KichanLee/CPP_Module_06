@@ -2,8 +2,7 @@ NAME		=	./a.out
 CXX			=	c++ 
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
-SRCS		=	Data.cpp \
-				Serializer.cpp \
+SRCS		=	Serializer.cpp \
 				main.cpp
 OBJS		=	${SRCS:.c=.o}
 

@@ -6,13 +6,28 @@
 #include "Base.hpp"
 #include "C.hpp"
 
-Base* generate(void) {
+Base* generate(void);
+void identify(Base* p);
+void identify(Base& p);
+
+int main() {
   A a;
   B b;
   C c;
-  int value1 = 1;
-  int value2 = 2;
-  int value3 = 3;
+  Base base;
+  Base* bp = generate();
+  identify(bp);
+  A& a_ref = a;
+  B& b_ref = b;
+  C& c_ref = c;
+  identify(dynamic_cast<Base&>(a_ref));
+  identify(dynamic_cast<Base&>(b_ref));
+  identify(dynamic_cast<Base&>(c_ref));
+}
+
+Base* generate(void) {
+  Base* re_ptr;
+
   std::random_device rd;
   std::mt19937 gen(rd());
 
@@ -20,16 +35,46 @@ Base* generate(void) {
 
   int selectedValue = distribution(gen);
 
-  std::cout << "Selected value: " << selectedValue << std::endl;
-
-  if (selectedValue == 1)
-    return (&a);
-  else if (selectedValue == 2)
-    return (&b);
-  else
-    return (&c);
+  if (selectedValue == 1) {
+    A a;
+    re_ptr = &a;
+  } else if (selectedValue == 2) {
+    B b;
+    re_ptr = &b;
+  } else {
+    C c;
+    re_ptr = &c;
+  }
+  return (re_ptr);
 }
-void identify(Base* p) {}
-void identify(Base& p) {}
 
-int main() {}
+void identify(Base* p) {
+  if (dynamic_cast<A*>(p))
+    std::cout << "A class" << std::endl;
+  else if (dynamic_cast<B*>(p))
+    std::cout << "B class" << std::endl;
+  else if (dynamic_cast<C*>(p))
+    std::cout << "C class" << std::endl;
+  else
+    std::cout << "Not in A, B, C class\n";
+}
+
+void identify(Base& p) {
+  try {
+    A a = dynamic_cast<A&>(p);
+    std::cout << "A class\n";
+  } catch (const std::exception& e) {
+    try {
+      B b = dynamic_cast<B&>(p);
+      std::cout << "B class\n";
+    } catch (const std::exception& e) {
+      try {
+        C c = dynamic_cast<C&>(p);
+        std::cout << "C class\n";
+      } catch (const std::exception& e) {
+        std::cout << "Not in A, B, C class\n";
+        std::cerr << e.what() << '\n';
+      }
+    }
+  }
+}
